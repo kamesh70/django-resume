@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}"> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 
+<title>Document</title>
+</head>
+<body>
+    <div class="container mb-5">
+        <h1 class="alert-danger text-center p-3">Resume Uploader</h1>
+        <div class="row">
+        <div class="col-sm-8">
+            <form class="shadow" action="" method="POST"  enctype="multipart/form-data" >
+            {% csrf_token %}
+            {% for fm in form %}
+            <div class="form-group mb-3">
+                {{fm.label_tag}}{{fm}}<small class="text-danger">{{fm.errors|striptags}}</small>
+            </div>
+            {% endfor %}
+            <input type="submit" value="submit" class="btn btn-primary">
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <P class="alert alert-danage my-3">{{error}}</P>
+                    {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <h4 class="text-center"><u>List of candidate</u></h4>
+            {% for stu in candidates %}
+                {{}}
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <script>
+    $( function() {
+      $( "#datepicker" ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    } );
+    </script>
+</body>
+</html>
